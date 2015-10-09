@@ -6,6 +6,7 @@ Created on Thu Sep 24 14:37:11 2015
 """
 import math
 
+#Adds new variables to data dictionary
 def add_data(data_dict):
     for point in data_dict:
         if (math.isnan(float(data_dict[point]['from_messages'])) or math.isnan(float(data_dict[point]['from_this_person_to_poi']))):                   
