@@ -206,4 +206,4 @@ plt.show()
 plt.clf()
 
 #Pickles model, data, and selected features
-dump_classifier_and_data(SVM_RF, data_dict ,reduced_features_list)
+dump_classifier_and_data(DT_RF, data_dict ,reduced_features_list)

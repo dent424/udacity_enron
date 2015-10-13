@@ -27,3 +27,21 @@ def select_features(features, labels, features_list):
     plt.axhline(y=10, color ="black")    
     plt.show()
     plt.clf()
+
+    for i, feature in enumerate(features_list):
+        i += 1        
+        temp_features = features_list[:i]
+        
+        #Creates the decision tree, random forest, and SVM classifiers
+        dt=tree.DecisionTreeClassifier()
+        rf=RandomForestClassifier()
+        svr = svm.SVC()
+
+        #Runs GridsearchCV with all of the combinations of models and datasets above to find best model of each type
+        print "Full Feature List Without PCA"
+        print "SVM"
+        SVM_FF=run_algorithm(svr, parametersSVM, features, labels)
+        print "DT"
+        DT_FF=run_algorithm(dt, parametersDT, unscaled_features, labels)
+        print "RF"
+        RF_FF=run_algorithm(rf, parametersRF, unscaled_features, labels)
