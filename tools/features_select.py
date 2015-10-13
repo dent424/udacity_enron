@@ -6,8 +6,9 @@ Created on Thu Sep 24 15:22:30 2015
 """
 from sklearn.feature_selection import SelectPercentile, f_classif
 import matplotlib.pyplot as plt
+from battery import battery
 
-def select_features(features, labels, features_list):
+def select_features(unscaled_features, features, labels, features_list):
     selector = SelectPercentile(f_classif, percentile=10)
     selector.fit(features, labels)
     
@@ -15,6 +16,7 @@ def select_features(features, labels, features_list):
     no_poi_features = list(features_list)
     no_poi_features.pop(0)
     sorted_scores = sorted(selector.scores_)
+    #new_features_list contains the features sorted by selector scores
     new_features_list = [x for (y,x) in sorted(zip(selector.scores_,no_poi_features))]
     print "SELECTOR SCORES"
     print new_features_list, sorted_scores    
@@ -28,20 +30,21 @@ def select_features(features, labels, features_list):
     plt.show()
     plt.clf()
 
-    for i, feature in enumerate(features_list):
-        i += 1        
-        temp_features = features_list[:i]
+    zipped = zip(selector.scores_, unscaled_features, features, labels)
+    zipped.sort()
+    sorted_scores, unscaled_features, features, labels =zip(*zipped)
+    SVM = []
+    DT = []
+    RF = []
+    j=0
+    
+    for i, feature in enumerate(features_list):       
+        #takes only labels and features of first ith columns        
+        temp_scaled_features = features[:,[0,i]]
+        temp_unscaled_features = unscaled_features[:,[0,i]]
+        temp_labels = labels[:,[0,i]]
+        SVM[j], DT[j], RF[j] = battery(labels, unscaled_features, features)
         
-        #Creates the decision tree, random forest, and SVM classifiers
-        dt=tree.DecisionTreeClassifier()
-        rf=RandomForestClassifier()
-        svr = svm.SVC()
-
-        #Runs GridsearchCV with all of the combinations of models and datasets above to find best model of each type
-        print "Full Feature List Without PCA"
-        print "SVM"
-        SVM_FF=run_algorithm(svr, parametersSVM, features, labels)
-        print "DT"
-        DT_FF=run_algorithm(dt, parametersDT, unscaled_features, labels)
-        print "RF"
-        RF_FF=run_algorithm(rf, parametersRF, unscaled_features, labels)
+        
+        
+        

@@ -52,7 +52,7 @@ features = scaler.fit_transform(unscaled_features)
 
 #SEARCH TO SEE WHAT RESULTS TO KEEP
 #Function returns a graph of the F-values of different variables to help determine what to keep
-select_features(features, labels, features_list)
+select_features(unscaled_features, features, labels, features_list)
 
 #REDUCED SET UP DATA (5 VARIABLES)
 #Looks at the output of the select_feature() function and keeps the ones with F scores above 15 

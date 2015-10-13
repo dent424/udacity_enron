@@ -9,7 +9,8 @@ import numpy as np
 from sklearn import svm, tree
 from sklearn.ensemble import RandomForestClassifier
 
-def run_battery(labels, unscaled_features, scaled_features, data):
+
+def battery(labels, unscaled_features, scaled_features):
     #SET UP GRID SEARCH PARAMETERS AND MODELS
     #Sets up ranges of C, Gamma, and Kernel to test with SVM in GridsearchCV
     C_range = np.logspace(-2,5,8)
@@ -27,7 +28,7 @@ def run_battery(labels, unscaled_features, scaled_features, data):
     rf=RandomForestClassifier()
     svr = svm.SVC()
     
-    print "DT"
+    print "SVM"
     SVM=run_algorithm(svr, parametersSVM, scaled_features, labels)
     print "DT"
     DT=run_algorithm(dt, parametersDT, unscaled_features, labels)
