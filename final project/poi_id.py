@@ -47,9 +47,9 @@ features = scaler.fit_transform(unscaled_features)
 
 #SEARCH TO SEE WHAT RESULTS TO KEEP
 #Function returns a graph of the F-values of different variables to help determine what to keep
-
+"""
 select_features(unscaled_features, features, labels, features_list, my_dataset)
-
+"""
 #Feature list of highest value F-score in the select_feature function
 reduced_features_list =['poi', 'exercised_stock_options','total_stock_value',
                         'bonus']
@@ -84,3 +84,5 @@ RRF = run_test(estimators_RF, my_dataset, reduced_features_list)
 
 #Pickles model, data, and selected features
 dump_classifier_and_data(RF, data_dict ,reduced_features_list)
+
+
