@@ -1,14 +1,10 @@
 (lp0
 S'poi'
 p1
-aS'poi_to_ratio'
-p2
 aS'exercised_stock_options'
-p3
+p2
 aS'total_stock_value'
-p4
+p3
 aS'bonus'
-p5
-aS'salary'
-p6
+p4
 a.
