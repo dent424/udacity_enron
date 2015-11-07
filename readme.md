@@ -1,4 +1,4 @@
-README file for Alexander Moore's Intro to Machine Learning Project
+README
 
 INCLUDED FILES AND FOLDERS
 Project-Report.pdf - The main report for this project
